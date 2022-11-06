@@ -10,4 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Writer {
+
+    private Integer no;
+
+    private String name;
+
+    private String content;
 }
