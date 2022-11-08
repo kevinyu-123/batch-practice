@@ -1,5 +1,6 @@
 package com.practice.qtrproject.model.product;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel("상품 정보")
 public class Product {
 
     private Integer no;
