@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @ApiModel("상품 정보")
 public class Product {
+
     @Id
     @Schema(description = "번호")
     private Integer no;
@@ -36,12 +37,15 @@ public class Product {
     @Schema(description = "역자명")
     private List<Integer> transNo;
 
-
+    @Schema(description = "등록일")
     private Date regDate;
 
+    @Schema(description = "수정일")
     private Date updDate;
 
+    @Schema(description = "삭제일")
     private Date delDate;
 
+    @Schema(description = "상품 상세 정보")
     private ProductInfo productInfo;
 }
