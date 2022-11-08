@@ -24,8 +24,8 @@ public class SwaggerConfig {
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Practice Swagger")
-                .description("practice swagger config")
+                .title("Quarter Project")
+                .description("practice")
                 .version("1.0")
                 .build();
     }
