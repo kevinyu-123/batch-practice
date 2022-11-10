@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class ProductCategory {
 
     private String categoryCd;
+    
 }
