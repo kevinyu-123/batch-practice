@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @ApiModel("상품 카테고리")
 public class ProductCategory {
+
+    private String categoryCd;
 }
