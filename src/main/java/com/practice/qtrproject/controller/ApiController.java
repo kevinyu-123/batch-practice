@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 @ApiModel("API")
 public class ApiController {
-
     private final ApiService service;
 
 
