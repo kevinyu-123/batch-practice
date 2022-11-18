@@ -1,5 +1,6 @@
 package com.practice.qtrproject.service;
 
+import com.practice.qtrproject.dto.ProductDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,8 @@ public class ApiService {
 //        this.mapper = mapper;
 //    }
 
-
+    public void saveProduct(ProductDto dto) {
+    }
 
 
 }
