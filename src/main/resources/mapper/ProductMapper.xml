@@ -2,4 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.practice.qtrproject.mapper.ProductMapper">
 
+    <resultMap id="product" type="com.practice.qtrproject.model.product.Product">
+
+
+    </resultMap>
+
+    <insert id="saveProduct">
+        INSERT  into product (price, name, unique_code, product_info, writer_no, trans_no, reg_date)
+        VALUES(#{product.price}, #{product.name}, #{product.productInfo,typeHandler= com.practice.qtrproject.handler.TypeHandler},
+               #{product.writerNo, typeHandler= com.practice.qtrproject.handler.TypeHandler}, #{product.transNo, typeHandler= com.practice.qtrproject.handler.TypeHandler}, now())
+    </insert>
+
+
+
+
+
 </mapper>

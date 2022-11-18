@@ -1,7 +1,7 @@
 package com.practice.qtrproject.controller;
 
-import com.practice.qtrproject.dto.CommonRespDto;
-import com.practice.qtrproject.dto.ProductDto;
+import com.practice.qtrproject.dto.response.CommonRespDto;
+import com.practice.qtrproject.dto.request.ProductDto;
 import com.practice.qtrproject.service.ApiService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;

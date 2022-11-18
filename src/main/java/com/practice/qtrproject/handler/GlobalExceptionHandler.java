@@ -1,6 +1,6 @@
 package com.practice.qtrproject.handler;
 
-import com.practice.qtrproject.dto.CommonRespDto;
+import com.practice.qtrproject.dto.response.CommonRespDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

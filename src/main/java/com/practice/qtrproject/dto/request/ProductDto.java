@@ -1,4 +1,4 @@
-package com.practice.qtrproject.dto;
+package com.practice.qtrproject.dto.request;
 
 import com.practice.qtrproject.model.product.ProductInfo;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
@@ -17,10 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 @Accessors(fluent = true)
 public class ProductDto {
-
-    @Id
-    @Schema(description = "번호")
-    private Integer no;
 
     @Schema(description = "가격")
     private Integer price;

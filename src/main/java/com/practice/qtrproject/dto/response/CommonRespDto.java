@@ -1,4 +1,4 @@
-package com.practice.qtrproject.dto;
+package com.practice.qtrproject.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
