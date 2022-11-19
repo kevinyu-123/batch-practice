@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(fluent = true)
+@Accessors(chain = true)
 public class ProductDto {
 
     @Schema(description = "가격")
