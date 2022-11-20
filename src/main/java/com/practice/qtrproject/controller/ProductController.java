@@ -26,7 +26,7 @@ public class ProductController {
     public ResponseEntity<?> saveBook(@RequestBody ProductDto dto){
         service.saveProduct(dto);
 
-        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("success").body(null).build(), HttpStatus.CREATED);
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully saved to database").body(null).build(), HttpStatus.CREATED);
     }
 
 

@@ -12,20 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Slf4j
 public class ApiService {
-
     @Autowired
     private ProductMapper mapper;
-
 
     @Transactional(rollbackFor = Exception.class)
     public void saveProduct(ProductDto dto) {
         Product product = Product.builder().build();
-
         BeanUtils.copyProperties(dto,product);
 
         mapper.saveProduct(product);
 
     }
+
 
 
 }
