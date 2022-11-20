@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RequiredArgsConstructor
-@Api("test 컨트롤러")
+@Api(tags = "테스트 컨트롤러")
 @RequestMapping("/api/v1")
 @RestController
 public class ApiController {

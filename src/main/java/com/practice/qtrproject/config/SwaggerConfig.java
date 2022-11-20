@@ -26,7 +26,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("Quarter Project")
                 .description("practice")
-                .version("1.0")
+                .version("3.0")
                 .build();
     }
 }
