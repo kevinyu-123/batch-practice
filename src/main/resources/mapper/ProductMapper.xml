@@ -31,6 +31,10 @@
                   )
     </insert>
 
+    <select id="getList" resultMap="product">
+        SELECT * FROM product
+    </select>
+
 
 
 
