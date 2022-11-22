@@ -25,8 +25,6 @@ public class ApiService {
         mapper.saveProduct(product);
 
     }
-
-
     public List<Product> getList() {
 
         return mapper.getList();

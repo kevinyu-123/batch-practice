@@ -1,4 +1,4 @@
-package com.practice.qtrproject.controller;
+package com.practice.qtrproject.controller.product;
 
 import com.practice.qtrproject.dto.request.ProductDto;
 import com.practice.qtrproject.dto.response.CommonRespDto;
@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,7 +29,7 @@ public class ProductController {
             @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false) //TODO: 차후 jwt 토큰 사용
     })
     @PostMapping("")
-    public ResponseEntity<?> saveBook(@RequestBody ProductDto dto){
+    public ResponseEntity<?> saveBook(@RequestBody @Valid ProductDto dto){
         service.saveProduct(dto);
 
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully saved to database").body(null).build(), HttpStatus.CREATED);
