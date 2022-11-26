@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -23,11 +24,11 @@ public class ProductDto {
     private Integer price;
 
     @Schema(description = "이름")
-    @NotNull
+    @NotBlank
     private String name;
 
     @Schema(description = "고유 번호")
-    @NotNull
+    @NotBlank
     private String uniqueCode;
 
     @Schema(description = "작가명")
