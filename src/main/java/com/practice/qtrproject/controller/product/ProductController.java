@@ -33,7 +33,7 @@ public class ProductController {
             @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false) //TODO: 차후 jwt 토큰 사용
     })
     @PostMapping("")
-    public ResponseEntity<?> saveBook(@RequestBody @Valid ProductDto dto, BindingResult bindingResult){
+    public ResponseEntity<?> saveProduct(@RequestBody @Valid ProductDto dto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             Map<String,String> errorMap = new HashMap<String,String>();
             for(FieldError fe : bindingResult.getFieldErrors()){
@@ -46,6 +46,7 @@ public class ProductController {
 
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully saved to database").body(null).build(), HttpStatus.CREATED);
     }
+
     @ApiOperation(value = "상품 리스트 조회", notes = "DB를 통하여 상품정보를 리스트형식으로 불러온다")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false) //TODO: 차후 jwt 토큰 사용
@@ -55,8 +56,23 @@ public class ProductController {
 
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product list").body(service.getList()).build(),HttpStatus.OK);
     }
+    @ApiOperation(value = "상품 del_date 업데이트 처리", notes = "del_date 업데이트 후 배치를 통하여 삭제 처리")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
+    })
+    @PutMapping("/{productNo}")
+    public ResponseEntity<?> updateDelDate(@PathVariable Integer productNo){
+        service.updateDelDate(productNo);
 
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully updated").body(null).build(),HttpStatus.OK);
+    }
 
+    @DeleteMapping("/{productNo}")
+    public ResponseEntity<?> deleteProduct(@PathVariable int productNo){
+        service.deleteProduct(productNo);
 
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully deleted").body(null).build(),HttpStatus.OK);
+
+    }
 
 }

@@ -35,8 +35,13 @@
         SELECT * FROM product
     </select>
 
+    <update id="updateDelDate">
+        UPDATE product SET del_date = now() WHERE no = #{no}
+    </update>
 
-
+    <delete id="deleteProduct">
+        DELETE FROM product WHERE no = #{no}
+    </delete>
 
 
 

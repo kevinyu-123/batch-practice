@@ -21,6 +21,7 @@ public class ApiService {
     public void saveProduct(ProductDto dto) {
         Product product = Product.builder().build();
         BeanUtils.copyProperties(dto,product);
+        log.info("product : {}", product);
 
         mapper.saveProduct(product);
 
@@ -28,5 +29,15 @@ public class ApiService {
     public List<Product> getList() {
 
         return mapper.getList();
+    }
+
+    public void updateDelDate(int productNo){
+
+        mapper.updateDelDate(productNo);
+    }
+
+    public void deleteProduct(Integer productNo)  {
+
+        mapper.deleteProduct(productNo);
     }
 }
