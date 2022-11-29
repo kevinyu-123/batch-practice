@@ -52,7 +52,7 @@ public class ProductController {
             @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false) //TODO: 차후 jwt 토큰 사용
     })
     @GetMapping("")
-    public ResponseEntity<?> getProductList(){
+    public ResponseEntity<?> getProductList(@RequestParam int pageSize, @RequestParam int currentPage){
 
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product list").body(service.getList()).build(),HttpStatus.OK);
     }
@@ -66,12 +66,15 @@ public class ProductController {
 
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully updated").body(null).build(),HttpStatus.OK);
     }
-
+    @ApiOperation(value = "바로 삭제 처리", notes = "db에 저장된 정보를 바로 삭제")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
+    })
     @DeleteMapping("/{productNo}")
     public ResponseEntity<?> deleteProduct(@PathVariable int productNo){
         service.deleteProduct(productNo);
 
-        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully deleted").body(null).build(),HttpStatus.OK);
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully deleted").body(null).build(),HttpStatus.NO_CONTENT);
 
     }
 
