@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("작가 정보")
+@ApiModel(value= "작가 정보", description = "db에 저장된 작가의 정보를 가진 도메인 class")
 public class Writer {
 
     @Schema(description = "번호")

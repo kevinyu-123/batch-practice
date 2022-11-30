@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("상품 부가 정보")
+@ApiModel(value = "상품 부가 정보")
 public class ProductInfo {
 
     @Schema(description = "할인율")

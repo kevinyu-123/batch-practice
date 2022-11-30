@@ -1,6 +1,7 @@
 package com.practice.qtrproject.dto.request;
 
 import com.practice.qtrproject.model.product.ProductInfo;
+import io.swagger.annotations.ApiModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
+@ApiModel(value = "상품 정보", description = "상품 db에 저장되는 데이터를 저장")
 public class ProductDto {
 
     @Schema(description = "가격")

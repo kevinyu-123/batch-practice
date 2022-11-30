@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("상품 정보")
+@ApiModel(value = "상품 정보")
 public class Product {
 
     @Id
