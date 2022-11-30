@@ -1,6 +1,8 @@
 package com.practice.qtrproject.service;
 
+import com.practice.qtrproject.dto.request.PageParamDto;
 import com.practice.qtrproject.dto.request.ProductDto;
+import com.practice.qtrproject.dto.request.SearchParamDto;
 import com.practice.qtrproject.mapper.ProductMapper;
 import com.practice.qtrproject.model.product.Product;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +28,9 @@ public class ApiService {
         mapper.saveProduct(product);
 
     }
-    public List<Product> getList() {
+    public List<Product> getList(SearchParamDto searchParamDto, PageParamDto pageParamDto) {
 
-        return mapper.getList();
+        return mapper.getList(searchParamDto,pageParamDto);
     }
 
     public void updateDelDate(int productNo){

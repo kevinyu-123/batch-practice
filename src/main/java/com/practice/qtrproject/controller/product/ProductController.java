@@ -1,6 +1,8 @@
 package com.practice.qtrproject.controller.product;
 
+import com.practice.qtrproject.dto.request.PageParamDto;
 import com.practice.qtrproject.dto.request.ProductDto;
+import com.practice.qtrproject.dto.request.SearchParamDto;
 import com.practice.qtrproject.dto.response.CommonRespDto;
 import com.practice.qtrproject.service.ApiService;
 import io.swagger.annotations.Api;
@@ -52,9 +54,9 @@ public class ProductController {
             @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false) //TODO: 차후 jwt 토큰 사용
     })
     @GetMapping("")
-    public ResponseEntity<?> getProductList(@RequestParam int pageSize, @RequestParam int currentPage){
+    public ResponseEntity<?> getProductList(SearchParamDto searchParamDto, PageParamDto pageParamDto){
 
-        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product list").body(service.getList()).build(),HttpStatus.OK);
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product list").body(service.getList(searchParamDto,pageParamDto)).build(),HttpStatus.OK);
     }
     @ApiOperation(value = "상품 del_date 업데이트 처리", notes = "del_date 업데이트 후 배치를 통하여 삭제 처리")
     @ApiImplicitParams({
