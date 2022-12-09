@@ -25,6 +25,8 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.springframework.boot:spring-boot-starter-quartz'
 
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
     implementation 'mysql:mysql-connector-java:8.0.28'
