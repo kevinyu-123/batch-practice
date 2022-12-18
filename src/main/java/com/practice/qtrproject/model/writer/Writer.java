@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Builder
 @Data
 @NoArgsConstructor
@@ -22,4 +24,11 @@ public class Writer {
 
     @Schema(description = "내용")
     private String content;
+
+    @Schema(description = "저장일")
+    private Date regDate;
+
+    @Schema(description = "수정일")
+    private Date updDate;
+
 }
