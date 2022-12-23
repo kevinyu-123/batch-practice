@@ -48,4 +48,7 @@ public class Product {
 
     @Schema(description = "상품 상세 정보")
     private ProductInfo productInfo;
+
+    @Schema(description="삭제여부")
+    private Boolean delFlag;
 }
