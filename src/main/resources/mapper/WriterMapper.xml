@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.practice.qtrproject.mapper.WriterMapper">
+
+
+    <sql id="Filter_List">
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test=" searchParamDto.regDate != null and searchParamDto.regDate != '' ">
+                AND reg_date &gt;= #{searchParamDto.regDate}
+            </if>
+            <if test=" searchParamDto.updDate != null and searchParamDto.updDate != '' ">
+                AND upd_date &gt;= #{searchParamDto.updDate}
+            </if>
+            <if test=" searchParamDto.delDate != null and searchParamDto.delDate != '' ">
+                AND del_date &gt;= #{searchParamDto.delDate}
+            </if>
+        </trim>
+        <choose>
+            <when test="searchParamDto.regDate != null and searchParamDto.regDate != ''">
+                ORDER BY reg_date ASC
+            </when>
+            <when test="searchParamDto.updDate != null and searchParamDto.updDate != ''">
+                ORDER BY upd_date ASC
+            </when>
+            <when test="searchParamDto.delDate != null and searchParamDto.delDate != ''">
+                ORDER BY del_date ASC
+            </when>
+        </choose>
+        limit #{pageParamDto.offset}, #{pageParamDto.pageSize}
+    </sql>
+
+    <insert id="saveInfo">
+        INSERT INTO writer (
+                name,
+                content,
+                reg_date
+            ) VALUES (
+                #{name}, #{content}, now()
+                )
+    </insert>
+
+
+
+
+
+
+</mapper>

@@ -8,10 +8,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -23,8 +29,16 @@ public class WriterController {
     private final WriterService writerService;
 
     @PostMapping("")
-    public ResponseEntity<?> saveWriterInfo(@RequestBody WriterDto writerDto){
-
+    public ResponseEntity<?> saveWriterInfo(@RequestBody @Valid WriterDto writerDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            Map<String,String> errorMap = new HashMap<String,String>();
+            for(FieldError fe : bindingResult.getFieldErrors()){
+                errorMap.put(fe.getField(),fe.getDefaultMessage());
+            }
+            log.info("errorMap: "+ errorMap.toString());
+            throw new RuntimeException(errorMap.toString());
+        }
+        writerService.saveWriterInfo(writerDto);
         return  new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully saved to database").body(null).build(), HttpStatus.CREATED);
     }
 

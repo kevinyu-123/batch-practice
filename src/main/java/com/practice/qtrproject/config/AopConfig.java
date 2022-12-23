@@ -1,5 +1,6 @@
 package com.practice.qtrproject.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -9,17 +10,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
+@Slf4j
 public class AopConfig {
     private static final Logger logger = LoggerFactory.getLogger(AopConfig.class);
 
     @Before("execution(* com.practice.qtrproject.controller.product.ProductController.*.*(..))")
     public void doSomethingBefore() {
-        logger.info("AOP Test : Before ");
+        log.info("AOP Test : Before ");
     }
 
     @After("execution(* com.practice.qtrproject.controller.product.ProductController.*.*(..)) ")
     public void doSomethingAfter() {
-        logger.info("AOP Test : After");
+        log.info("AOP Test : After");
     }
 
 }

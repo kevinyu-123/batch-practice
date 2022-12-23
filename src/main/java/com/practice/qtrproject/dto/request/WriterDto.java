@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,9 +15,11 @@ import lombok.NoArgsConstructor;
 public class WriterDto {
 
     @Schema(description = "이름")
+    @NotBlank
     private String name;
 
     @Schema(description = "내용")
+    @NotBlank
     private String content;
     
 }
