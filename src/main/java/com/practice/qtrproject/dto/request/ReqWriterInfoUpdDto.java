@@ -6,12 +6,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 public class ReqWriterInfoUpdDto {
 
+    @Schema(description = "작가번호")
+    @NotNull
+    private Integer no;
     @Schema(description = "이름")
     private String name;
 

@@ -39,7 +39,9 @@
                 )
     </insert>
 
-
+    <update id="updateInfo">
+        UPDATE writer SET name = #{name}, content = #{content}, upd_date = now() WHERE no = #{no}
+    </update>
 
 
 

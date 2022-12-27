@@ -41,8 +41,15 @@ public class WriterController {
     }
 
     @PutMapping("")
-    public ResponseEntity<?> updateWriterInfo(@RequestBody ReqWriterInfoUpdDto updDto){
-
+    public ResponseEntity<?> updateWriterInfo(@RequestBody  @Valid ReqWriterInfoUpdDto updDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            Map<String,String> errorMap = new HashMap<String,String>();
+            for(FieldError fe : bindingResult.getFieldErrors()){
+                errorMap.put(fe.getField(),fe.getDefaultMessage());
+            }
+            log.info("errorMap: "+ errorMap.toString());
+            throw new RuntimeException(errorMap.toString());
+        }
         writerService.updateWriterInfo(updDto);
 
         return  new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully updated").body(null).build(), HttpStatus.OK);
