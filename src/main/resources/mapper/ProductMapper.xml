@@ -13,7 +13,7 @@
         <result column="upd_date" property= "updDate" jdbcType="TIMESTAMP"/>
         <result column="del_date" property= "delDate" jdbcType="TIMESTAMP"/>
         <result column="product_info" property= "productInfo" javaType="com.practice.qtrproject.model.product.ProductInfo" typeHandler="com.practice.qtrproject.handler.TypeHandler"/>
-        <result column="del_flag" property="delFlag" jdbcType="Boolean"/>
+        <result column="del_flag" property="delFlag" jdbcType="BOOLEAN"/>
 
     </resultMap>
 
@@ -66,7 +66,7 @@
     </select>
 
     <update id="updateDelDate">
-        UPDATE product SET del_date = now(), del_flag = true WHERE no = #{no}
+        UPDATE product SET del_date = now(), del_flag = 1 WHERE no = #{no}
     </update>
 
     <delete id="deleteProduct">

@@ -1,5 +1,6 @@
 package com.practice.qtrproject.service;
 
+import com.practice.qtrproject.dto.request.ReqWriterInfoUpdDto;
 import com.practice.qtrproject.dto.request.WriterDto;
 import com.practice.qtrproject.mapper.WriterMapper;
 import com.practice.qtrproject.model.writer.Writer;
@@ -27,5 +28,9 @@ public class WriterService {
             log.error("error occured : {}", e.getMessage());
         }
 
+    }
+
+    public void updateWriterInfo(ReqWriterInfoUpdDto updDto) {
+        
     }
 }
