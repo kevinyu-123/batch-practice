@@ -40,7 +40,7 @@ public class WriterController {
         return  new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully saved to database").body(null).build(), HttpStatus.CREATED);
     }
 
-    @PutMapping("")
+    @PatchMapping("")
     public ResponseEntity<?> updateWriterInfo(@RequestBody  @Valid ReqWriterInfoUpdDto updDto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             Map<String,String> errorMap = new HashMap<String,String>();

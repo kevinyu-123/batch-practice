@@ -33,9 +33,17 @@ public class ApiService {
         return mapper.getList(searchParamDto,pageParamDto);
     }
 
-    public void updateDelDate(int productNo){
+    public void updateDelDate(Integer productNo){
+        if(productNo == null){
+            throw new IllegalArgumentException("productNo is missing");
+        }
+        try {
+            mapper.updateDelDate(productNo);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("error : {}",e.getMessage());
+        }
 
-        mapper.updateDelDate(productNo);
     }
 
     public void deleteProduct(Integer productNo)  {
