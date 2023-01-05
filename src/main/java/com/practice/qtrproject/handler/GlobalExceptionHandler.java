@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<?> apiException(RuntimeException e){
         return new ResponseEntity<>(CommonRespDto.builder().code(2).msg(e.getMessage()).build(), HttpStatus.BAD_REQUEST);
     }
+
 }

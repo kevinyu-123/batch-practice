@@ -12,7 +12,6 @@ public class SearchParamDto {
     private String delDate;
 
     private String searchType;
-
     private String value;
 
 }

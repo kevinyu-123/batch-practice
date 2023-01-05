@@ -11,9 +11,7 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
     public void saveProduct( Product product);
-
-    public List<Product> getList(@Param("searchParamDto")SearchParamDto searchParamDto, @Param("pageParamDto")PageParamDto pageParamDto);
-
+    public List<Product> getList(@Param("searchParamDto") SearchParamDto searchParamDto, @Param("pageParamDto") PageParamDto pageParamDto);
     public void deleteProduct(@Param("no") Integer productNo);
-   public void updateDelDate(@Param("no") int productNo);
+    public void updateDelDate(@Param("no") Integer productNo);
 }

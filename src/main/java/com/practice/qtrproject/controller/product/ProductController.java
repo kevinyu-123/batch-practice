@@ -80,4 +80,14 @@ public class ProductController {
 
     }
 
+    @ApiOperation(value = "상품 상세 정보", notes = "상품과 저자 정보 가져오기")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
+    })
+    @GetMapping("/{productCd}")
+    public ResponseEntity<?> getProductDetailInfo(@PathVariable Integer productCd){
+
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product detail Info").body(service.getDetailInfo(productCd)).build(),HttpStatus.OK);
+    }
+
 }

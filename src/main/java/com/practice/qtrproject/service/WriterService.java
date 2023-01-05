@@ -17,7 +17,7 @@ public class WriterService {
 
     private final WriterMapper writerMapper;
 
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional(rollbackFor = Exception.class)
     public void saveWriterInfo(WriterDto writerDto) {
 
         Writer writer = Writer.builder().build();
@@ -32,7 +32,7 @@ public class WriterService {
 
     }
 
-    @Transactional(rollbackFor = RuntimeException.class)
+    @Transactional(rollbackFor = Exception.class)
     public void updateWriterInfo(ReqWriterInfoUpdDto updDto) {
         try {
             writerMapper.updateInfo(updDto);
