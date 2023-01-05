@@ -10,9 +10,9 @@ import javax.sql.DataSource;
 @Configuration
 @EnableBatchProcessing
 public class CustomBatchConfigurer extends DefaultBatchConfigurer {
-
     @Autowired
     private DataSource dataSource;
+
     @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;

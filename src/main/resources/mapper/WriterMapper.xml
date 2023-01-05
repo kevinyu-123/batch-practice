@@ -40,7 +40,16 @@
     </insert>
 
     <update id="updateInfo">
-        UPDATE writer SET name = #{name}, content = #{content}, upd_date = now() WHERE no = #{no}
+        UPDATE writer
+            <set>
+                <if test="name != null and name != ''">
+                    name = #{name},
+                </if>
+                <if test="content != null and content != ''">
+                    content = #{content},
+                </if>
+            </set>
+            upd_date = now() WHERE no = #{no}
     </update>
 
 

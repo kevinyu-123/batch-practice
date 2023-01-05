@@ -34,11 +34,10 @@ public class WriterService {
 
     @Transactional(rollbackFor = RuntimeException.class)
     public void updateWriterInfo(ReqWriterInfoUpdDto updDto) {
-
         try {
             writerMapper.updateInfo(updDto);
         }catch (Exception e){
-            log.error("error occured : {}", e.getMessage());
+            log.error("error occurred : {}", e.getMessage());
 
         }
     }
