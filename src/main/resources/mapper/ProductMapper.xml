@@ -7,8 +7,8 @@
         <result column="price" property="price" jdbcType="INTEGER"/>
         <result column="name" property= "name" jdbcType="VARCHAR"/>
         <result column="unique_code" property= "uniqueCode" jdbcType="VARCHAR"/>
-        <result column="writer_no" property= "writerNo" jdbcType="INTEGER" javaType="java.util.ArrayList" typeHandler="com.practice.qtrproject.handler.TypeHandler"/>
-        <result column="trans_no" property= "transNo" jdbcType="INTEGER" javaType="java.util.ArrayList" typeHandler="com.practice.qtrproject.handler.TypeHandler"/>
+        <result column="writer_no_list" property= "writerNoList" jdbcType="INTEGER" javaType="java.util.ArrayList" typeHandler="com.practice.qtrproject.handler.TypeHandler"/>
+        <result column="trans_no_list" property= "transNoList" jdbcType="INTEGER" javaType="java.util.ArrayList" typeHandler="com.practice.qtrproject.handler.TypeHandler"/>
         <result column="reg_date" property= "regDate" jdbcType="TIMESTAMP"/>
         <result column="upd_date" property= "updDate" jdbcType="TIMESTAMP"/>
         <result column="del_date" property= "delDate" jdbcType="TIMESTAMP"/>
@@ -18,17 +18,15 @@
     </resultMap>
 
     <resultMap id="detailInfo" type="com.practice.qtrproject.dto.response.ResultProductDetailInfoDto" extends="product">
-
         <collection property="writerInfo" javaType="java.util.ArrayList" ofType="com.practice.qtrproject.model.writer.Writer">
-            <result column="no" property="writerNo" jdbcType="INTEGER"/>
+            <id column="writer_no" property="writerNo" jdbcType="INTEGER"/>
             <result column="name" property= "name" jdbcType="VARCHAR"/>
             <result column="content" property= "content" jdbcType="VARCHAR"/>
             <result column="reg_date" property= "regDate" jdbcType="TIMESTAMP"/>
             <result column="upd_date" property= "updDate" jdbcType="TIMESTAMP"/>
         </collection>
-
         <collection property="translatorInfo" javaType="java.util.ArrayList" ofType="com.practice.qtrproject.model.writer.Translator">
-            <result column="no" property="translatorNo" jdbcType="INTEGER"/>
+            <id column="trans_no" property="transNo" jdbcType="INTEGER"/>
             <result column="name" property= "name" jdbcType="VARCHAR"/>
             <result column="content" property= "content" jdbcType="VARCHAR"/>
             <result column="reg_date" property= "regDate" jdbcType="TIMESTAMP"/>
@@ -64,19 +62,19 @@
 
     <select id="getDetailInfo" resultMap="detailInfo">
         SELECT prod.*,
-               writer.no,
+               writer.writer_no,
                writer.content,
                writer.reg_date,
                writer.upd_date,
                writer.name,
-               translator.no,
+               translator.writer_no AS trans_no,
                translator.content,
                translator.reg_date,
                translator.upd_date,
                translator.name
         FROM product AS prod
-        LEFT JOIN writer AS writer ON JSON_CONTAINS(prod.writer_no, CAST(writer.no AS JSON))
-        LEFT JOIN writer AS translator ON JSON_CONTAINS(prod.trans_no, CAST(translator.no AS JSON))
+        LEFT JOIN writer AS writer ON JSON_CONTAINS(prod.writer_no_list, CAST(writer.writer_no AS JSON))
+        LEFT JOIN writer AS translator ON JSON_CONTAINS(prod.trans_no_list, CAST(translator.writer_no AS JSON))
         WHERE prod.product_no = #{no}
 
     </select>
@@ -88,13 +86,13 @@
             name,
             unique_code,
             product_info,
-            writer_no,
-            trans_no,
+            writer_no_list,
+            trans_no_list,
             reg_date
         )
         VALUES(
                   #{price}, #{name}, #{uniqueCode}, #{productInfo,typeHandler = com.practice.qtrproject.handler.TypeHandler},
-                  #{writerNo, typeHandler = com.practice.qtrproject.handler.TypeHandler}, #{transNo, typeHandler = com.practice.qtrproject.handler.TypeHandler}, now()
+                  #{writerNoList, typeHandler = com.practice.qtrproject.handler.TypeHandler}, #{transNoList, typeHandler = com.practice.qtrproject.handler.TypeHandler}, now()
                   )
     </insert>
 

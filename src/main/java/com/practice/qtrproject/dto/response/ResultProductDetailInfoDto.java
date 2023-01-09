@@ -31,10 +31,10 @@ public class ResultProductDetailInfoDto {
     private String uniqueCode;
 
     @Schema(description = "작가명")
-    private List<Integer> writerNo;
+    private List<Integer> writerNoList;
 
     @Schema(description = "역자명")
-    private List<Integer> transNo;
+    private List<Integer> transNoList;
 
     @Schema(description = "등록일")
     private Date regDate;
