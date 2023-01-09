@@ -3,6 +3,7 @@ package com.practice.qtrproject.service;
 import com.practice.qtrproject.dto.request.PageParamDto;
 import com.practice.qtrproject.dto.request.ProductDto;
 import com.practice.qtrproject.dto.request.SearchParamDto;
+import com.practice.qtrproject.dto.response.ResultProductDetailInfoDto;
 import com.practice.qtrproject.mapper.ProductMapper;
 import com.practice.qtrproject.model.product.Product;
 import lombok.extern.slf4j.Slf4j;
@@ -56,9 +57,15 @@ public class ApiService {
         }
     }
 
+    public ResultProductDetailInfoDto getDetailInfo(Integer productNo) {
+        ResultProductDetailInfoDto result = ResultProductDetailInfoDto.builder().build();
+        try {
+            result = mapper.getDetailInfo(productNo);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("error : {}", e.getMessage());
+        }
 
-    public Object getDetailInfo(Integer productCd) {
-
-        return null;
+        return result;
     }
 }

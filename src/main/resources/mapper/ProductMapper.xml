@@ -3,7 +3,7 @@
 <mapper namespace="com.practice.qtrproject.mapper.ProductMapper">
 
     <resultMap id="product" type="com.practice.qtrproject.model.product.Product">
-        <id column="no" property="no" jdbcType="VARCHAR"/>
+        <id column="product_no" property="productNo" jdbcType="INTEGER"/>
         <result column="price" property="price" jdbcType="INTEGER"/>
         <result column="name" property= "name" jdbcType="VARCHAR"/>
         <result column="unique_code" property= "uniqueCode" jdbcType="VARCHAR"/>
@@ -15,6 +15,25 @@
         <result column="product_info" property= "productInfo" javaType="com.practice.qtrproject.model.product.ProductInfo" typeHandler="com.practice.qtrproject.handler.TypeHandler"/>
         <result column="del_flag" property="delFlag" jdbcType="BOOLEAN"/>
 
+    </resultMap>
+
+    <resultMap id="detailInfo" type="com.practice.qtrproject.dto.response.ResultProductDetailInfoDto" extends="product">
+
+        <collection property="writerInfo" javaType="java.util.ArrayList" ofType="com.practice.qtrproject.model.writer.Writer">
+            <result column="no" property="writerNo" jdbcType="INTEGER"/>
+            <result column="name" property= "name" jdbcType="VARCHAR"/>
+            <result column="content" property= "content" jdbcType="VARCHAR"/>
+            <result column="reg_date" property= "regDate" jdbcType="TIMESTAMP"/>
+            <result column="upd_date" property= "updDate" jdbcType="TIMESTAMP"/>
+        </collection>
+
+        <collection property="translatorInfo" javaType="java.util.ArrayList" ofType="com.practice.qtrproject.model.writer.Translator">
+            <result column="no" property="translatorNo" jdbcType="INTEGER"/>
+            <result column="name" property= "name" jdbcType="VARCHAR"/>
+            <result column="content" property= "content" jdbcType="VARCHAR"/>
+            <result column="reg_date" property= "regDate" jdbcType="TIMESTAMP"/>
+            <result column="upd_date" property= "updDate" jdbcType="TIMESTAMP"/>
+        </collection>
     </resultMap>
 
     <sql id="Filter_List">
@@ -43,6 +62,25 @@
         limit #{pageParamDto.offset}, #{pageParamDto.pageSize}
     </sql>
 
+    <select id="getDetailInfo" resultMap="detailInfo">
+        SELECT prod.*,
+               writer.no,
+               writer.content,
+               writer.reg_date,
+               writer.upd_date,
+               writer.name,
+               translator.no,
+               translator.content,
+               translator.reg_date,
+               translator.upd_date,
+               translator.name
+        FROM product AS prod
+        LEFT JOIN writer AS writer ON JSON_CONTAINS(prod.writer_no, CAST(writer.no AS JSON))
+        LEFT JOIN writer AS translator ON JSON_CONTAINS(prod.trans_no, CAST(translator.no AS JSON))
+        WHERE prod.product_no = #{no}
+
+    </select>
+
 
     <insert id="saveProduct">
         INSERT INTO product (
@@ -66,11 +104,11 @@
     </select>
 
     <update id="updateDelDate">
-        UPDATE product SET del_date = now(), del_flag = 1 WHERE no = #{no}
+        UPDATE product SET del_date = now(), del_flag = 1 WHERE product_no = #{no}
     </update>
 
     <delete id="deleteProduct">
-        DELETE FROM product WHERE no = #{no}
+        DELETE FROM product WHERE product_no = #{no}
     </delete>
 
 

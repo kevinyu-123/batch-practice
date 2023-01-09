@@ -1,23 +1,23 @@
-package com.practice.qtrproject.model.product;
+package com.practice.qtrproject.dto.response;
 
-import io.swagger.annotations.ApiModel;
+import com.practice.qtrproject.model.product.ProductInfo;
+import com.practice.qtrproject.model.writer.Translator;
+import com.practice.qtrproject.model.writer.Writer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
 
-@Builder
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "상품 정보")
-public class Product {
-    @Id
+public class ResultProductDetailInfoDto {
+
     @Schema(description = "번호")
     private Integer productNo;
 
@@ -50,4 +50,8 @@ public class Product {
 
     @Schema(description="삭제여부")
     private Boolean delFlag;
+    private List<Writer> writerInfo;
+    private List<Translator> translatorInfo;
+
+
 }

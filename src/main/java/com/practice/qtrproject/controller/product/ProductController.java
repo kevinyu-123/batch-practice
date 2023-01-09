@@ -49,6 +49,16 @@ public class ProductController {
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully saved to database").body(null).build(), HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "상품 상세 정보", notes = "상품과 저자 정보 가져오기")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
+    })
+    @GetMapping("/{productNo}")
+    public ResponseEntity<?> getProductDetailInfo(@PathVariable Integer productNo){
+
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product detail Info").body(service.getDetailInfo(productNo)).build(),HttpStatus.OK);
+    }
+
     @ApiOperation(value = "상품 리스트 조회", notes = "DB를 통하여 상품정보를 리스트형식으로 불러온다")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false) //TODO: 차후 jwt 토큰 사용
@@ -56,7 +66,7 @@ public class ProductController {
     @GetMapping("")
     public ResponseEntity<?> getProductList(SearchParamDto searchParamDto, PageParamDto pageParamDto){
 
-        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product list").body(service.getList(searchParamDto,pageParamDto)).build(),HttpStatus.OK);
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product list").body(service.getList(searchParamDto, pageParamDto)).build(),HttpStatus.OK);
     }
     @ApiOperation(value = "상품 del_date 업데이트 처리", notes = "del_date 업데이트 후 배치를 통하여 삭제 처리")
     @ApiImplicitParams({
@@ -80,14 +90,5 @@ public class ProductController {
 
     }
 
-    @ApiOperation(value = "상품 상세 정보", notes = "상품과 저자 정보 가져오기")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
-    })
-    @GetMapping("/{productCd}")
-    public ResponseEntity<?> getProductDetailInfo(@PathVariable Integer productCd){
-
-        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product detail Info").body(service.getDetailInfo(productCd)).build(),HttpStatus.OK);
-    }
 
 }

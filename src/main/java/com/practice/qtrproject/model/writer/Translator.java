@@ -14,10 +14,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value= "작가 정보", description = "db에 저장된 작가의 정보를 가진 도메인 class")
-public class Writer {
+public class Translator {
 
     @Schema(description = "번호")
-    private Integer writerNo;
+    private Integer translatorNo;
 
     @Schema(description = "이름")
     private String name;
