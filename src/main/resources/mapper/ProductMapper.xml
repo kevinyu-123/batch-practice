@@ -73,10 +73,15 @@
                translator.upd_date,
                translator.name
         FROM product AS prod
-        LEFT JOIN writer AS writer ON JSON_CONTAINS(prod.writer_no_list, CAST(writer.writer_no AS JSON))
-        LEFT JOIN writer AS translator ON JSON_CONTAINS(prod.trans_no_list, CAST(translator.writer_no AS JSON))
+                 LEFT JOIN writer AS writer ON JSON_CONTAINS(
+                prod.writer_no_list,
+                CAST(writer.writer_no AS JSON)
+            )
+                 LEFT JOIN writer AS translator ON JSON_CONTAINS(
+                prod.trans_no_list,
+                CAST(translator.writer_no AS JSON)
+            )
         WHERE prod.product_no = #{no}
-
     </select>
 
 
