@@ -51,7 +51,10 @@
             </set>
             upd_date = now() WHERE no = #{no}
     </update>
-
+    
+    <delete id="deleteWriterInfo">
+        DELETE FROM writer WHERE writer_no = #{writerNo}
+    </delete>
 
 
 

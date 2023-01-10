@@ -56,4 +56,11 @@ public class WriterController {
 
     }
 
+    @DeleteMapping("/{writerNo}")
+    public ResponseEntity<?> deleteWriterInfo(@PathVariable Integer writerNo){
+        writerService.deleteWriter(writerNo);
+        return  new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully deleted").body(null).build(), HttpStatus.OK);
+    }
+
+    
 }
