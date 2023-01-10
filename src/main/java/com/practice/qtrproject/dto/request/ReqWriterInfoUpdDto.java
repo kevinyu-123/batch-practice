@@ -19,7 +19,6 @@ public class ReqWriterInfoUpdDto {
     private Integer no;
     @Schema(description = "이름")
     private String name;
-
     @Schema(description = "내용")
     private String content;
 
