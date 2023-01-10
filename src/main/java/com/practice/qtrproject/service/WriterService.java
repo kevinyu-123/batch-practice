@@ -6,6 +6,7 @@ import com.practice.qtrproject.mapper.WriterMapper;
 import com.practice.qtrproject.model.writer.Writer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,18 @@ public class WriterService {
             writerMapper.updateInfo(updDto);
         }catch (Exception e){
             log.error("error occurred : {}", e.getMessage());
-
         }
     }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteWriter(Integer writerNo){
+        try {
+            writerMapper.deleteWriterInfo(writerNo);
+        }catch (Exception e){
+            log.error("error on deleting : {}", e.getMessage());
+        }
+    }
+
+
 }

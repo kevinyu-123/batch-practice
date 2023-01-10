@@ -16,6 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ApiModel(value= "작가 정보", description = "db에 저장된 작가의 정보를 가진 도메인 class")
 public class Writer {
+
     @Id
     @Schema(description = "번호")
     private Integer writerNo;
