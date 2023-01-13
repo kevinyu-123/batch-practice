@@ -16,4 +16,6 @@ public interface ProductMapper {
     public void deleteProduct(@Param("no") Integer productNo);
     public void updateDelDate(@Param("no") Integer productNo);
     public ResultProductDetailInfoDto getDetailInfo(@Param("no") Integer productNo);
+
+    public int checkVal(Integer productNo);
 }

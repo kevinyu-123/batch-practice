@@ -54,7 +54,7 @@ public class WriterController {
             @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
     })
     @PatchMapping("")
-    public ResponseEntity<?> updateWriterInfo(@RequestBody  @Valid ReqWriterInfoUpdDto updDto, BindingResult bindingResult){
+    public ResponseEntity<?> updateWriterInfo(@RequestBody  @Valid ReqWriterInfoUpdDto updDto, BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){
             Map<String,String> errorMap = new HashMap<String,String>();
             for(FieldError fe : bindingResult.getFieldErrors()){

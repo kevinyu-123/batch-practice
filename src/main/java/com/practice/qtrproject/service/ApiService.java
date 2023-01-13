@@ -7,6 +7,7 @@ import com.practice.qtrproject.dto.response.ResultProductDetailInfoDto;
 import com.practice.qtrproject.mapper.ProductMapper;
 import com.practice.qtrproject.model.product.Product;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.errors.ApiException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,6 @@ public class ApiService {
         Product product = Product.builder().build();
         BeanUtils.copyProperties(dto,product);
         log.info("product : {}", product);
-
         mapper.saveProduct(product);
 
     }
@@ -44,28 +44,21 @@ public class ApiService {
         }catch (Exception e){
             e.printStackTrace();
             log.error("error : {}",e.getMessage());
+            throw new ApiException(e);
         }
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void deleteProduct(Integer productNo)  {
-        try {
-            mapper.deleteProduct(productNo);
-        }catch (Exception e){
-            e.printStackTrace();
-            log.error("error : {}",e.getMessage());
+        int valueCount = mapper.checkVal(productNo);
+        if(valueCount == 0){
+            throw new ApiException("no value");
         }
+        mapper.deleteProduct(productNo);
     }
 
     public ResultProductDetailInfoDto getDetailInfo(Integer productNo) {
-        ResultProductDetailInfoDto result = ResultProductDetailInfoDto.builder().build();
-        try {
-            result = mapper.getDetailInfo(productNo);
-        }catch (Exception e){
-            e.printStackTrace();
-            log.error("error : {}", e.getMessage());
-        }
-
+        ResultProductDetailInfoDto result = mapper.getDetailInfo(productNo);
         return result;
     }
 }
