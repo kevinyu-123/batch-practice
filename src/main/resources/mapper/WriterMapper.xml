@@ -56,6 +56,9 @@
         DELETE FROM writer WHERE writer_no = #{writerNo}
     </delete>
 
+    <select id="checkVal" resultType="int">
+        SELECT COUNT(*) FROM writer WHERE writer_no = #{writer_no}
+    </select>
 
 
 </mapper>

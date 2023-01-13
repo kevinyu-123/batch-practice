@@ -9,4 +9,5 @@ public interface WriterMapper {
     public void saveInfo(Writer writer);
     public void updateInfo(ReqWriterInfoUpdDto updDto);
     public void deleteWriterInfo(Integer writerNo);
+    public int checkVal(Integer writerNo);
 }

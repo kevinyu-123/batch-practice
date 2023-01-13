@@ -17,6 +17,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,9 +74,9 @@ public class WriterController {
             @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
     })
     @DeleteMapping("/{writerNo}")
-    public ResponseEntity<?> deleteWriterInfo(@PathVariable Integer writerNo){
+    public ResponseEntity<?> deleteWriterInfo(@PathVariable @Positive Integer writerNo) throws Exception {
         writerService.deleteWriter(writerNo);
-        return  new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully deleted").body(null).build(), HttpStatus.OK);
+        return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully deleted").body(null).build(), HttpStatus.OK);
     }
 
 
