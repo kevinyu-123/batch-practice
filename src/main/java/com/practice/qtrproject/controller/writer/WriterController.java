@@ -13,13 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -37,14 +34,6 @@ public class WriterController {
     })
     @PostMapping("")
     public ResponseEntity<?> saveWriterInfo(@RequestBody @Valid WriterDto writerDto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            Map<String,String> errorMap = new HashMap<String,String>();
-            for(FieldError fe : bindingResult.getFieldErrors()){
-                errorMap.put(fe.getField(),fe.getDefaultMessage());
-            }
-            log.info("errorMap: "+ errorMap.toString());
-            throw new RuntimeException(errorMap.toString());
-        }
         writerService.saveWriterInfo(writerDto);
         return  new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully saved to database").body(null).build(), HttpStatus.CREATED);
     }
@@ -55,14 +44,6 @@ public class WriterController {
     })
     @PatchMapping("")
     public ResponseEntity<?> updateWriterInfo(@RequestBody  @Valid ReqWriterInfoUpdDto updDto, BindingResult bindingResult) throws Exception{
-        if(bindingResult.hasErrors()){
-            Map<String,String> errorMap = new HashMap<String,String>();
-            for(FieldError fe : bindingResult.getFieldErrors()){
-                errorMap.put(fe.getField(),fe.getDefaultMessage());
-            }
-            log.info("errorMap: "+ errorMap.toString());
-            throw new RuntimeException(errorMap.toString());
-        }
         writerService.updateWriterInfo(updDto);
 
         return  new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully updated").body(null).build(), HttpStatus.OK);

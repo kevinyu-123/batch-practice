@@ -14,12 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -36,14 +33,6 @@ public class ProductController {
     })
     @PostMapping("")
     public ResponseEntity<?> saveProduct(@RequestBody @Valid ProductDto dto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            Map<String,String> errorMap = new HashMap<String,String>();
-            for(FieldError fe : bindingResult.getFieldErrors()){
-                errorMap.put(fe.getField(),fe.getDefaultMessage());
-            }
-            log.info("errorMap: "+ errorMap.toString());
-            throw new RuntimeException(errorMap.toString());
-        }
         service.saveProduct(dto);
 
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully saved to database").body(null).build(), HttpStatus.CREATED);

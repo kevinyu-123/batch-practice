@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 @Slf4j
-public class AopConfig {
-    private static final Logger logger = LoggerFactory.getLogger(AopConfig.class);
+public class AopTestConfig {
+    private static final Logger logger = LoggerFactory.getLogger(AopTestConfig.class);
 
     @Before("execution(public * com.practice.qtrproject.controller.*.*(..))")
     public void doSomethingBefore() {
