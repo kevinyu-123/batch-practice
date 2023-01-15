@@ -28,6 +28,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-batch'
     implementation 'org.springframework.boot:spring-boot-starter-quartz'
 
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.7.0'
+
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
     implementation 'mysql:mysql-connector-java:8.0.28'
     implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.1'
