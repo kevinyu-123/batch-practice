@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "spring.redis")
-public class RedisProperties {
+public class RedisPropertiesConfig {
     private Integer port;
     private String host;
 }

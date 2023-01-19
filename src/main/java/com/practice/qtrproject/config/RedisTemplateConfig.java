@@ -13,7 +13,7 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 @EnableRedisRepositories
 public class RedisTemplateConfig {
 
-    private final RedisProperties redisProperties;
+    private final RedisPropertiesConfig redisProperties;
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
