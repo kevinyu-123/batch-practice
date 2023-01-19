@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 public class AopTestConfig {
     private static final Logger logger = LoggerFactory.getLogger(AopTestConfig.class);
 
-    @Before("execution(public * com.practice.qtrproject.controller.*.*(..))")
+    @Before("execution(* com.practice.qtrproject.controller..*Controller.*(..))")
     public void doSomethingBefore() {
         logger.info("AOP Test : Before ");
     }
 
-    @After("execution(public * com.practice.qtrproject.controller.*.*(..)) ")
+    @After("execution(* com.practice.qtrproject.controller..*Controller.*(..))")
     public void doSomethingAfter() {
         logger.info("AOP Test : After");
     }
