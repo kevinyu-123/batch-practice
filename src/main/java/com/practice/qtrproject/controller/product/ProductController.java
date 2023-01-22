@@ -6,8 +6,6 @@ import com.practice.qtrproject.dto.request.SearchParamDto;
 import com.practice.qtrproject.dto.response.CommonRespDto;
 import com.practice.qtrproject.service.ApiService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,9 +26,6 @@ public class ProductController {
     private final ApiService service;
 
     @ApiOperation(value = "상품 저장", notes = "상품정보를 DB에 저장")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false) //TODO: 차후 jwt 토큰 사용
-    })
     @PostMapping("")
     public ResponseEntity<?> saveProduct(@RequestBody @Valid ProductDto dto, BindingResult bindingResult){
         service.saveProduct(dto);
@@ -39,9 +34,6 @@ public class ProductController {
     }
 
     @ApiOperation(value = "상품 상세 정보", notes = "상품과 저자 정보 가져오기")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
-    })
     @GetMapping("/{productNo}")
     public ResponseEntity<?> getProductDetailInfo(@PathVariable Integer productNo){
 
@@ -49,18 +41,12 @@ public class ProductController {
     }
 
     @ApiOperation(value = "상품 리스트 조회", notes = "DB를 통하여 상품정보를 리스트형식으로 불러온다")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false) //TODO: 차후 jwt 토큰 사용
-    })
     @GetMapping("")
     public ResponseEntity<?> getProductList(SearchParamDto searchParamDto, PageParamDto pageParamDto){
 
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product list").body(service.getList(searchParamDto, pageParamDto)).build(),HttpStatus.OK);
     }
     @ApiOperation(value = "상품 del_date 업데이트 처리", notes = "del_date 업데이트 후 배치를 통하여 삭제 처리")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
-    })
     @PutMapping("/{productNo}")
     public ResponseEntity<?> updateDelDate(@PathVariable Integer productNo){
         service.updateDelDate(productNo);
@@ -68,9 +54,6 @@ public class ProductController {
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("successfully updated").body(null).build(),HttpStatus.OK);
     }
     @ApiOperation(value = "바로 삭제 처리", notes = "db에 저장된 정보를 바로 삭제")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "header", name = "accessToken", dataTypeClass = String.class, required = false)
-    })
     @DeleteMapping("/{productNo}")
     public ResponseEntity<?> deleteProduct(@PathVariable int productNo){
         service.deleteProduct(productNo);
