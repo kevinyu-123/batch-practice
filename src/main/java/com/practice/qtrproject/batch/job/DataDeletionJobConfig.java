@@ -50,6 +50,7 @@ public class DataDeletionJobConfig {
     public Step dataDelStep(){
         return stepBuilderFactory.get("dataDelStep")
                 .tasklet(dataDeletionTasklet())
+                .allowStartIfComplete(true)
                 .build();
     }
 
