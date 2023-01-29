@@ -14,7 +14,6 @@
         <result column="del_date" property= "delDate" jdbcType="TIMESTAMP"/>
         <result column="product_info" property= "productInfo" javaType="com.practice.qtrproject.model.product.ProductInfo" typeHandler="com.practice.qtrproject.handler.TypeHandler"/>
         <result column="del_flag" property="delFlag" jdbcType="BOOLEAN"/>
-
     </resultMap>
 
     <resultMap id="detailInfo" type="com.practice.qtrproject.dto.response.ResultProductDetailInfoDto" extends="product">
@@ -44,6 +43,16 @@
             </if>
             <if test=" searchParamDto.delDate != null and searchParamDto.delDate != '' ">
                 AND del_date &gt;= #{searchParamDto.delDate}
+            </if>
+            <if test="searchParamDto.searchType != null and searchParamDto.searchType != '' ">
+                <choose>
+                    <when test='searchParamDto.searchType.equals("name")'>
+                        AND name LIKE concat('%', #{value}, '%')
+                    </when>
+                    <when test='searchParamDto.searchType.equals("price")'>
+                        AND price LIKE concat('%', #{value}, '%')
+                    </when>
+                </choose>
             </if>
         </trim>
         <choose>
