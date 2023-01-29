@@ -3,6 +3,7 @@ package com.practice.qtrproject.service;
 import com.practice.qtrproject.dto.request.PageParamDto;
 import com.practice.qtrproject.dto.request.ProductDto;
 import com.practice.qtrproject.dto.request.SearchParamDto;
+import com.practice.qtrproject.dto.request.SearchParamRecordDTO;
 import com.practice.qtrproject.dto.response.ResultProductDetailInfoDto;
 import com.practice.qtrproject.mapper.ProductMapper;
 import com.practice.qtrproject.model.product.Product;
@@ -32,7 +33,7 @@ public class ApiService {
         mapper.saveProduct(product);
 
     }
-    public List<Product> getList(SearchParamDto searchParamDto, PageParamDto pageParamDto) {
+    public List<Product> getList(SearchParamRecordDTO searchParamDto, PageParamDto pageParamDto) {
 
         return mapper.getList(searchParamDto,pageParamDto);
     }

@@ -2,7 +2,7 @@ package com.practice.qtrproject.controller.product;
 
 import com.practice.qtrproject.dto.request.PageParamDto;
 import com.practice.qtrproject.dto.request.ProductDto;
-import com.practice.qtrproject.dto.request.SearchParamDto;
+import com.practice.qtrproject.dto.request.SearchParamRecordDTO;
 import com.practice.qtrproject.dto.response.CommonRespDto;
 import com.practice.qtrproject.service.ApiService;
 import io.swagger.annotations.Api;
@@ -42,7 +42,7 @@ public class ProductController {
 
     @ApiOperation(value = "상품 리스트 조회", notes = "DB를 통하여 상품정보를 리스트형식으로 불러온다")
     @GetMapping("")
-    public ResponseEntity<?> getProductList(SearchParamDto searchParamDto, PageParamDto pageParamDto){
+    public ResponseEntity<?> getProductList(SearchParamRecordDTO searchParamDto, PageParamDto pageParamDto){
 
         return new ResponseEntity<>(CommonRespDto.builder().code(1).msg("product list").body(service.getList(searchParamDto, pageParamDto)).build(),HttpStatus.OK);
     }
