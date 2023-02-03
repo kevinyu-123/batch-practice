@@ -1,16 +1,17 @@
 package com.practice.qtrproject.batch.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.configuration.JobLocator;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 @Slf4j
+@DisallowConcurrentExecution
 public class QuartzConfig extends QuartzJobBean {
 
     private final JobLocator jobLocator;
@@ -25,14 +26,19 @@ public class QuartzConfig extends QuartzJobBean {
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         try {
             Job job = jobLocator.getJob("deleteJob");
-            JobParameters params = new JobParametersBuilder()
-                    .addString("JobID", String.valueOf(System.currentTimeMillis()))
-                    .toJobParameters();
+//            JobParameters params = new JobParametersBuilder()
+//                    .addString("JobID", String.valueOf(System.currentTimeMillis()))
+//                    .toJobParameters();
+
             //jobLauncher.run(job, params);
-            // if there is no jobparamter
+
+            // if there is no jobparamter then use below
+
              jobLauncher.run(job, new JobParameters());
         } catch (Exception e) {
             e.printStackTrace();
+            log.error("error : {}", e.getMessage());
+
         }
     }
 }
